@@ -20,6 +20,8 @@ INSTALLATION DU PROJET :
 
 3) Importer la base de donnée « groupomania » sur phpMyAdmin à partir du fichier groupomania.sql contenu dans le dossier Backend.
 
+4) Dans le dossier backend => .env,  mettez votre username et votre mot de passe pour la base de donnée development. 
+
 4) Dans le dossier backend => models => index.js décommentez et suivez les instructions pour créer un compte modérateur(voir également l'exemple ci-dessous).
 - l.42      VALUES (DEFAULT,"votre_adresse_mail","le_pseudo","${password(
    		      "le_mot_de_passe@00" 
