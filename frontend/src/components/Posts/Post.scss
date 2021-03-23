@@ -1,0 +1,105 @@
+body {
+	background-color: white;
+}
+.police {
+	font-family: "Montserrat", sans-serif;
+	font-size: 300;
+}
+.card {
+	img {
+		border-radius: 5px;
+		width: 200px;
+		height: 200px;
+		margin: auto;
+	}
+	.badge {
+		font-size: 1.1rem;
+	}
+	.seePost:hover {
+		cursor: pointer;
+	}
+	.delete {
+		margin-left: 95%;
+	}
+	margin-top: 5rem;
+	border-radius: 5px;
+	border-color: #d1515a;
+}
+.card-footer {
+	background-color: white;
+	margin-bottom: 8rem;
+	padding: none;
+	border-color: #d1515a;
+	border-bottom: 1px solid #d1515a;
+}
+.card-footer:last-child {
+	border-radius: 15px;
+}
+
+.post {
+	max-width: 800px;
+	margin: 0 auto 0 auto;
+	border-radius: 5px;
+	h3 {
+		font-family: "Montserrat", sans-serif;
+		font-size: 550;
+		font-weight: 660;
+
+	}
+	p {
+		font-family: "Montserrat", sans-serif;
+		font-size: 150;
+		padding-top: 1px;
+	}
+	.text-primary {
+		margin-top: 5px;
+		font-family: "Montserrat", sans-serif;
+		font-size: 80;
+		font-weight: bold;
+		margin-left: auto;
+	}
+}
+
+.postform {
+	font-family: "Montserrat", sans-serif;
+	font-size: 300;
+	max-width: 750px;
+	display: flex;
+	margin: 3rem auto 0 auto;
+	margin-bottom: 8rem;
+	border-radius: 5px;
+	#title {
+		border-radius: 20px;
+	}
+	#attachment {
+		border: none;
+	}
+	textarea {
+		margin-bottom: 1.5rem;
+		border-radius: 15px;
+	}
+	.card-header {
+		border-bottom: none;
+		background-color: white;
+		border-radius: 15px;
+	}
+	.btn {
+		margin-top: 1.5rem;
+		border-radius: 30px;
+	}
+	input#file-upload-button {
+		content: null;
+	}
+}
+
+.icon:focus {
+	border: 1px solid #d1515a;
+}
+
+.icon:hover {
+	cursor: pointer;
+	color: #d1515a;
+}
+.btn {
+	margin: none !important;
+}

@@ -1,0 +1,18 @@
+.footer {
+	display: flex;
+	justify-content: space-between;
+	height: 50px;
+	background-color: #192947;
+	opacity: 0.9;
+	padding: 1rem;
+	width: 100%;
+	border-top: 1px solid #d1515a;
+	margin-top: 4rem;
+	position: fixed;
+	bottom: 0;
+
+	a {
+		color: #ffffff;
+		text-decoration: none;
+	}
+}
