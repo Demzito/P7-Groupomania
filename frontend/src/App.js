@@ -12,8 +12,6 @@ import { UserContext } from "./components/Context"; // On importe le component C
 import { handleProfile } from "./api/users"; // on importe le handleProfile contenu dans l'api users
 import "./App.css";
 
-
-
 const isMyTokenValid = () => {
 	if (localStorage.getItem("token")) {
 		const decodedToken = jwt_decode(localStorage.getItem("token"));
