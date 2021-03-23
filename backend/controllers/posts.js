@@ -1,3 +1,4 @@
+//imports
 const models = require("../models");
 const fs = require("fs");
 
@@ -7,7 +8,6 @@ exports.createPost = async (req, res) => {
 		const attachmentURL = `${req.protocol}://${req.get("host")}/images/${
 			req.file.filename
 		}`;
-
 		if (!attachmentURL) {
 			throw new Error(" Sorry, missing parameters");
 		}
@@ -17,10 +17,10 @@ exports.createPost = async (req, res) => {
 			attributes: ["username"],
 			where: { id: req.user.id }
 		});
-
 		if (!findUser) {
 			throw new Error("Sorry,we can't find your account");
 		}
+
 		// post
 		const newPost = await models.Post.create({
 			title: req.body.title,
@@ -29,11 +29,9 @@ exports.createPost = async (req, res) => {
 			UserId: req.user.id,
 			isModerate: 0
 		});
-
 		if (!newPost) {
 			throw new Error(" Sorry, missing parameters");
 		}
-
 		res.status(200).json({ newPost });
 	} catch (error) {
 		res.status(400).json({ error: error.message });
@@ -44,7 +42,6 @@ exports.getAllPosts = async (req, res) => {
 	try {
 		const fields = req.query.fields;
 		const order = req.query.order;
-
 		const posts = await models.Post.findAll({
 			order: [order != null ? order.split(":") : ["createdAt", "DESC"]],
 			attributes: fields != "*" && fields != null ? fields.split(",") : null,
@@ -68,7 +65,6 @@ exports.getPostProfile = async (req, res) => {
 	try {
 		const order = req.query.order;
 		const fields = req.query.fields;
-
 		const postProfile = await models.Post.findAll({
 			order: [order != null ? order.split(":") : ["createdAt", "DESC"]],
 			attributes: fields != "*" && fields != null ? fields.split(",") : null,
@@ -83,7 +79,6 @@ exports.getPostProfile = async (req, res) => {
 		if (!postProfile) {
 			throw new Error(" This user has posted nothing ");
 		}
-
 		res.status(200).json(postProfile);
 	} catch (error) {
 		res.status(400).json({ error: error.message });
@@ -103,7 +98,6 @@ exports.deletePost = async (req, res) => {
 				error ? console.log(error) : console.log("file has been deleted");
 			});
 		}
-
 		if (!post) {
 			throw new Error("Sorry,your post doesn't exist ");
 		}
@@ -112,7 +106,6 @@ exports.deletePost = async (req, res) => {
 		const destroyedPost = await models.Post.destroy({
 			where: { id: req.params.id }
 		});
-
 		if (!destroyedPost) {
 			throw new Error("Sorry,something gone wrong,please try again later");
 		} else {
@@ -123,7 +116,6 @@ exports.deletePost = async (req, res) => {
 		const destroyedComment = await models.Comment.destroy({
 			where: { id: req.params.id }
 		});
-
 		if (!destroyedComment) {
 			throw new Error("Sorry,something gone wrong,please try again later");
 		} else {
@@ -139,11 +131,9 @@ exports.moderatePost = async (req, res) => {
 		const postToModerate = await models.Post.findOne({
 			where: { id: req.params.id }
 		});
-
 		if (!postToModerate) {
 			throw new Error(" Couldn't find your post");
 		}
-
 		const moderatedPost = (await postToModerate.isModerate)
 			? postToModerate.update({
 					isModerate: 0
@@ -151,7 +141,6 @@ exports.moderatePost = async (req, res) => {
 			: postToModerate.update({
 					isModerate: 1
 			  });
-
 		if (!moderatedPost) {
 			throw new Error("Sorry,something gone wrong,please try again later");
 		} else {

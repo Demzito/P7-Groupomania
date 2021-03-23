@@ -9,7 +9,6 @@ exports.signup = async (req, res) => {
 
 	const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	const password_regex = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
-	const username_regex = /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/;
 
 	// On cherche l'utilisateur dans la bdd
 
@@ -17,11 +16,9 @@ exports.signup = async (req, res) => {
 		if (!email || !username || !password) {
 			throw new Error("Missing parameters");
 		}
-
 		if (!email_regex.test(email)) {
 			throw new Error("Wrong email format");
 		}
-
 		if (!password_regex.test(password)) {
 			throw new Error(
 				"-At least 8 characters long - Include at least 1 lowercase letter - 1 capital letter - 1 number - 1 special character = !@#$%^&*"
@@ -43,7 +40,6 @@ exports.signup = async (req, res) => {
 			isAdmin: 0,
 			latent: 1
 		});
-
 		if (!newUser) {
 			throw new Error("Sorry,something gone wrong,please try again later");
 		}
@@ -51,11 +47,9 @@ exports.signup = async (req, res) => {
 		const token =
 			"Bearer " +
 			jwt.sign({ id: newUser.id }, "SECRET_KEY", { expiresIn: "2H" });
-
 		if (!token) {
 			throw new Error("Sorry,something gone wrong,please try again later");
 		}
-
 		res.status(201).json({
 			user_id: newUser.id,
 			email: newUser.email,
@@ -77,24 +71,20 @@ exports.login = async (req, res) => {
 				latent: 1
 			}
 		});
-
 		if (!user) {
 			throw new Error("Sorry,can't find your account");
 		}
 
 		const isMatch = await bcrypt.compare(req.body.password, user.password);
-
 		if (!isMatch) {
 			throw new Error("Incorrect password");
 		}
-
 		const token =
 			"Bearer " + jwt.sign({ id: user.id }, "SECRET_KEY", { expiresIn: "2h" });
 		res.status(200).json({
 			user: user,
 			token
 		});
-
 		if (!token) {
 			throw new Error("Something gone wrong try again later");
 		}
@@ -111,7 +101,6 @@ exports.userProfile = async (req, res) => {
 				id: req.user.id
 			}
 		});
-
 		if (!user) {
 			throw new Error("Sorry,can't find your account");
 		}
@@ -133,11 +122,9 @@ exports.deleteProfile = async (req, res) => {
 		const notLatent = userToFind.update({
 			latent: 0
 		});
-
 		if (!notLatent) {
 			throw new Error("Sorry,something gone wrong , please try again later");
 		}
-
 		res.status(200).json({
 			message: "Your account has been successfully deleted"
 		});

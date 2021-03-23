@@ -1,7 +1,5 @@
 // import
-
 const models = require("../models");
-const fs = require("fs");
 
 exports.createComment = async (req, res) => {
 	try {
@@ -11,7 +9,6 @@ exports.createComment = async (req, res) => {
 			UserId: req.user.id,
 			PostId: req.params.id
 		});
-
 		if (newCom) {
 			res.status(201).json({ message: "Your comment has been sent", newCom });
 		} else {
