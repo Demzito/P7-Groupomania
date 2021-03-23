@@ -1,12 +1,14 @@
-Développement d'un réseau social entreprise 
+Développement d'un réseau social entreprise  
 
-Projet fullstack  
+STACK :
 
-Front-end : react ,context api , react router , json web token pour l'authentification . 
+Front-end : react, context api, react router, json web token. 
 
-Pour le backend :node.js express , sequelize, json web token helmet et bcrypt . 
+Back-end : node.js express, sequelize, json web token helmet et bcrypt . 
 
-Pour la base de donnée : MySql
+Base de donnée : MySql, Xampp && phpMyAdmin
+
+Installation du projet :
 
 1) Clôner le projet 
 
