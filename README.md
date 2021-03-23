@@ -6,7 +6,7 @@ Front-end : react, context api, react router, json web token.
 
 Back-end : node.js express, sequelize, json web token helmet et bcrypt . 
 
-Base de donnée : MySql, Xampp && phpMyAdmin
+Base de donnée : MySql, Xampp
 
 Installation du projet :
 
@@ -14,9 +14,18 @@ Installation du projet :
 
 2) Installer les dépendances (assurez vous d’avoir mySql)
 
-3) Dans le dossier backend => config => config.json mettez-y votre username et votre mot de passe pour la base de donnée development
 
-4) créer localement la base de donnée « groupomania » à partir du fichier groupomania.sql contenu dans le dossier Backend
+3) créer localement la base de donnée « groupomania » à partir du fichier groupomania.sql contenu dans le dossier Backend.
+     - command : DATABASE CREATE GROUPOMANIA
+
+
+
+4) Dans le dossier backend => config => config.json décommentez et mettez-y votre username et votre mot de passe(voir exemple ci-dessous) ou conservez ceux d'origine
+
+- l.42      VALUES (DEFAULT,"votre_adresse_mail","le_pseudo","${password(
+   		      "le_mot_de_passe@00" 
+            )}"
+
 
 5) Dans le dossier backend => models => index.js suivez les instructions pour créer un compte modérateur , enregistrez les modifications , puis lancer nodemon. 
 
